@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import { useEffect, useState } from "react";
+import { FaChevronUp } from "react-icons/fa";
 import './App.css';
 
+
 function App() {
+  const [showbtn,setShowbtn]=useState(false);
+
+useEffect(()=>{
+window.addEventListener("scroll",function(){
+  if(window.pageYOffset > 900){
+    setShowbtn(true);
+  }else{
+    setShowbtn(false);
+  }
+})
+},[])
+
+const scrolltopbtn=()=>{
+window.scroll({top:0,behavior:"smooth"})
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <section className='h-[100vh] bg-sky-300 '>part 1</section>
+    <section  className='h-[100vh] bg-red-400'>part 2</section>
+    <section  className='h-[100vh] bg-blue-600'>part 3</section>
+    <section  className='h-[100vh] bg-lime-600'>part 4</section>
+
+    <button onClick={scrolltopbtn}  className={showbtn ?"top active" : "top"}><FaChevronUp /></button>
+     
+    </>
   );
 }
 
